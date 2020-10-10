@@ -7,7 +7,6 @@ using namespace std;
 
 //Function protoype:
 string PrintStar(int temp);
-int starSort(int temp);
 
 int main()
 {
@@ -18,7 +17,51 @@ int main()
 	inFile >> temp;	//Reads in integer values stored in "test.txt"
 	while (inFile)
 	{
-		cout << PrintStar(temp) << endl; //Passes integer temp value as an argument to printStar()
+		if (temp >= -30 && temp < -20)
+		{
+			cout << PrintStar(temp);
+		}
+		else if (temp >= -20 && temp < 0)
+		{
+			cout << PrintStar(temp);
+		}
+		else if (temp == 0)
+		{
+			cout << PrintStar(temp);
+		}
+		else if (temp == 1)
+		{
+			cout << PrintStar(temp);
+		}
+		else if (temp == 2)
+		{
+			cout << PrintStar(temp);
+		}
+		else if (temp == 3)
+		{
+			cout << PrintStar(temp);
+		}
+		else if (temp == 4)
+		{
+			cout << PrintStar(temp);
+		}
+		else if (temp == 5)
+		{
+			cout << PrintStar(temp);
+		}
+		else if (temp >= 5 && temp < 10)
+		{
+			cout << PrintStar(temp);
+		}
+		else if (temp >= 10 && temp < 50)
+		{
+			cout << PrintStar(temp);
+		}
+		else if (temp >= 50 && temp <= 100)
+		{
+			cout << PrintStar(temp);
+		}
+		//Passes integer temp value as an argument to printStar()
 		inFile >> temp; //Reads next integer value in test.txt
 	}
 
