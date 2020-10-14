@@ -1,8 +1,15 @@
+/*******************************************************************************************************
+* Hankel Haldin
+* Lab 4: Printing a bar graph that models hourly temperatures read from an input file of temperatures
+* Due: 10/19/2020
+* Program reads in hourly temperatures from an input file and outputs a bar graph of hourly temperatures
+********************************************************************************************************/
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <vector>
-#include <cmath>
+#include <vector> //I choose to use a vector to store temperatures because I could add the values to one location and then iterate through them using a range based for loop.
+#include <cmath> //Uses abs() to handle negative temperatures
 
 using namespace std;
 
@@ -11,7 +18,7 @@ void Print_Star(vector<float>& data); //Print_Star uses a reference parameter to
 int main()
 {
 	ifstream inFile;
-	bool isNumber;
+	bool isNumber {true};
 	float temp;
 	vector <float> data{};
 
@@ -24,10 +31,11 @@ int main()
 
 	inFile >> temp;
 
-	//EOF controlled while loop that reads in data from input file and adds it to vector that stores temps.
-	while (inFile) {
-		data.push_back(temp); //Adds every data type read in from the input file to the vector "data".
-		inFile >> temp; //Reads new value in from input file. Also functions as loop control when file reaches EOF.
+	//EOF controlled while loop that reads temperatures in from input file and adds them to a vector
+	while (inFile)
+	{
+		data.push_back(temp);
+		inFile >> temp;
 	}
 
 	//Heading and x-axis of bar graph.
@@ -51,7 +59,12 @@ void Print_Star(vector<float>& data)
 		string starOutput; //Stores stars for output to the console.
 		starOutput = ""; //Resets the string that stars are stored in every iteration through the ranged based for loop on the vector "data".
 
-		cout << val << ":"; //Prints out the vertical axis of the graph.
+		//Following if statements vet out any values out of range -30 to 120 so they don't appear on the graph.
+		if (val < -30 || val > 120) {
+			continue; //Tells compiler to skip body of loop and return to loop condition of first for loop.
+		} else {
+			cout << val << ":";
+		}
 
 		//This for loop takes the temperature read from the input file and divides it by three to get the correct number of degrees per star (1 star = 3 deg).
 		for (int i = 1; i <= (abs(val) / 3.0); ++i) { //Temperatures are converted to their absolute value, then divided by three for each star to represent 3 degrees.
@@ -76,6 +89,9 @@ void Print_Star(vector<float>& data)
 		}
 		else if (val >= 100 && val <= 120) {
 			cout << setw(11) << "|" << starOutput;
+		}
+		else if (val > 120) {
+			continue;
 		}
 		
 		cout << endl;
