@@ -8,8 +8,11 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <vector> //I choose to use a vector to store temperatures because I could add the values to one location and then iterate through them using a range based for loop.
-#include <cmath> //Uses abs() to handle negative temperatures
+#include <vector> 
+/*****************************************************************************************************************************
+*I choose to use a vector to store temperatures because I could have the data set of all temperatures in one location and then 
+*iterate through the vector's elements using a range based for loop.
+******************************************************************************************************************************/
 
 using namespace std;
 
@@ -18,18 +21,36 @@ void Print_Star(vector<float>& data); //Print_Star uses a reference parameter to
 int main()
 {
 	ifstream inFile;
-	bool isNumber {true};
+	string fileName;
 	float temp;
 	vector <float> data{};
 
-	inFile.open("test.txt");
+	cout << "Enter the name of your input file. ";
+	cin >> fileName;
 
+	inFile.open(fileName.c_str());
+
+	//In the following block the user either enters a valid file name or decides to terminate program in this loop when the input stream is in the failed state.
 	if (!inFile) {
-		cout << "Input file failed to open.";
-		return 1;
+		do
+		{
+			cout << "The input file failed to open.\n";
+			cout << "Try again to enter the file name or alternatively enter 'Q' or 'q' to terminate this program.\n\n";
+			cout << "File name:";
+			cin >> fileName;
+
+			if (fileName == "Q" || fileName == "q") { //User decides to terminate program.
+				cout << "Goodbye.";
+				return 1; //Terminates program.
+			}
+
+			inFile.open(fileName.c_str()); //Attempts to open file stream again
+		} while (!inFile); 
 	}
 
-	inFile >> temp;
+	cout << "\n\nOpening file..."; //Program successfully finds input file.
+
+	inFile >> temp; //Priming read for data input in the coming while loop.
 
 	//EOF controlled while loop that reads temperatures in from input file and adds them to a vector
 	while (inFile)
@@ -39,9 +60,10 @@ int main()
 	}
 
 	//Heading and x-axis of bar graph.
-	cout << "Temperatures for 24 hours: \n";
+	cout << "\n\n\nTemperatures for 24 hours: \n";
 	cout << setw(7) << "-30" << setw(8) << "0" << setw(10) << "30" << setw(10) << "60" << setw(10) << "90" << setw(10) << "120" << endl;
 
+	//Prints y-axis of hourly temperatures and a corresponding number of stars.
 	Print_Star(data);
 
 	cout << "\n###############\n";
