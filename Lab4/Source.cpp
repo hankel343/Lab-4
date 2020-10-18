@@ -66,6 +66,8 @@ int main()
 
 	//Prints y-axis of hourly temperatures and a corresponding number of stars.
 	Print_Star(data);
+	//Precondition: All input from the input file is either an int or floating type value
+	//Postcondition: A graph of hourly temperatures is printed.
 
 	cout << "\n#############\n";
 	cout << "* = 3 degrees";
