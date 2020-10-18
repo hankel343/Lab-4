@@ -8,7 +8,8 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <vector> 
+#include <vector>
+#include <math.h>
 /*****************************************************************************************************************************
 *I choose to use a vector to store temperatures because I could have the data set of all temperatures in one location and then 
 *iterate through the vector's elements using a range based for loop.
@@ -25,7 +26,7 @@ int main()
 	float temp;
 	vector <float> data{};
 
-	cout << "Enter the name of your input file. ";
+	cout << "Enter the name of your input file: ";
 	cin >> fileName;
 
 	inFile.open(fileName.c_str());
@@ -55,7 +56,7 @@ int main()
 	//EOF controlled while loop that reads temperatures in from input file and adds them to a vector
 	while (inFile)
 	{
-		data.push_back(temp);
+		data.push_back(ceil(temp)); //The ceil function rounds any floating point input from the input file to the next highest value.
 		inFile >> temp;
 	}
 
@@ -66,9 +67,9 @@ int main()
 	//Prints y-axis of hourly temperatures and a corresponding number of stars.
 	Print_Star(data);
 
-	cout << "\n###############\n";
-	cout << "1 * = 3 degrees";
-	cout << "\n###############";
+	cout << "\n#############\n";
+	cout << "* = 3 degrees";
+	cout << "\n#############";
 
 	return 0;
 }
