@@ -9,7 +9,6 @@
 #include <fstream>
 #include <iomanip>
 #include <vector>
-#include <math.h>
 /*****************************************************************************************************************************
 *I choose to use a vector to store temperatures because I could have the data set of all temperatures in one location and then 
 *iterate through the vector's elements using a range based for loop.
@@ -51,12 +50,12 @@ int main()
 
 	cout << "\n\nOpening file..."; //Program successfully finds input file.
 
-	inFile >> temp; //Priming read for data input in the coming while loop.
+	inFile >> temp;
 
 	//EOF controlled while loop that reads temperatures in from input file and adds them to a vector
 	while (inFile)
 	{
-		data.push_back(ceil(temp)); //The ceil function rounds any floating point input from the input file to the next highest value.
+		data.push_back(temp);
 		inFile >> temp;
 	}
 
@@ -73,6 +72,8 @@ int main()
 	cout << "* = 3 degrees";
 	cout << "\n#############";
 
+
+	inFile.close();
 	return 0;
 }
 
