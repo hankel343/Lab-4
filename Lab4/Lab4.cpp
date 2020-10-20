@@ -153,5 +153,8 @@ void PrintGraph(ifstream& inFile, string fileName)
 		cout << endl;
 		inFile >> temp;
 	}
+	cout << "###############\n";
+	cout << "* = 3 degrees";
+	cout << "\n###############";
 	inFile.close();
 }
