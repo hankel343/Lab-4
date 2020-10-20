@@ -151,4 +151,5 @@ void PrintGraph(ifstream& inFile, string fileName)
 		cout << endl;
 		inFile >> temp;
 	}
+	inFile.close();
 }
