@@ -67,6 +67,8 @@ int main()
 	return 0;
 }
 
+
+//This function does a pre-read of the input file to verify if it has illegal characters or not.
 int ErrorCheck(ifstream& inFile)
 {
 	char errorCheck;
