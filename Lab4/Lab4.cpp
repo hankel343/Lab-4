@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <fstream> //File I/O
-#include <string> //string used to store stars
+#include <string> //c++ string method .append() is used to store stars in a string
 #include <iomanip> //Formating graph
 #include <cctype> //Used for error checking
 
@@ -125,7 +125,7 @@ void PrintGraph(ifstream& inFile, string fileName)
 		//This for loop is used to get the correct amount of stars per degree.
 		for (int i = 1; i <= (abs(temp) / 3.0); ++i) //abs() is used to calculate values for negative inputs.
 		{
-			starOutput.append("*");
+			starOutput.append("*"); //Appends a star to a string called starOutput every time the loop iterates.
 		}
 
 		//Following if else ladder prints the corressponding temperature and number of stars associated with that value
